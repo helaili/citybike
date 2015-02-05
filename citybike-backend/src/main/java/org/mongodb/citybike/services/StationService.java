@@ -8,7 +8,7 @@ import javax.json.JsonArray;
 import javax.json.JsonArrayBuilder;
 import javax.json.JsonObject;
 import javax.json.JsonObjectBuilder;
-import javax.ws.rs.BeanParam;
+import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -19,7 +19,6 @@ import javax.ws.rs.core.MediaType;
 
 import org.mongodb.citybike.JCDClient;
 import org.mongodb.citybike.dao.StationDAO;
-import org.mongodb.citybike.entities.TextSearchBean;
 
 import com.mongodb.DBCursor;
 import com.mongodb.DBObject;
@@ -103,7 +102,7 @@ public class StationService {
 	public JsonArray geoSearchStations(@QueryParam("longitude")double longitude, @QueryParam("latitude")double latitude, @QueryParam("radius")int radius) {
 		JsonArrayBuilder jab = Json.createArrayBuilder();
 		
-		DBCursor cursor = stationDAO.getNearByStations(longitude, latitude, radius);
+		DBCursor cursor = stationDAO.getStationsByGeo(longitude, latitude, radius);
 		while(cursor.hasNext()) {
 			DBObject station = cursor.next();
 			jab.add(Json.createReader(new StringReader(JSON.serialize(station))).readObject());
@@ -115,11 +114,18 @@ public class StationService {
 	@POST
 	@Path("/textSearch")
 	@Produces(MediaType.APPLICATION_JSON)
-	//@Consumes(MediaType.APPLICATION_JSON)
-	public JsonArray textSearchStations(@BeanParam TextSearchBean search) {
-		System.out.println("Text Search : " + search);
+	@Consumes({MediaType.APPLICATION_JSON})
+	public JsonArray textSearchStations(String searchString) {
+		JsonObject searchObject =  Json.createReader(new StringReader(searchString)).readObject();
+		JsonArrayBuilder jab = Json.createArrayBuilder();
 		
-		return null; 
+		DBCursor cursor = stationDAO.getStationsByText(searchObject.getString("text"));
+		while(cursor.hasNext()) {
+			DBObject station = cursor.next();
+			jab.add(Json.createReader(new StringReader(JSON.serialize(station))).readObject());
+		}
+		
+		return jab.build(); 
 	}
 	
 	

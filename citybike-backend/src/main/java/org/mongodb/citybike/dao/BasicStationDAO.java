@@ -81,7 +81,7 @@ public class BasicStationDAO extends BasicDAO implements StationDAO {
 	}
 	
 	@Override
-	public DBCursor getNearByStations(double longitude, double latitude, int radius) {
+	public DBCursor getStationsByGeo(double longitude, double latitude, int radius) {
 		BasicDBList coordinates = new BasicDBList();
 		coordinates.add(longitude);
 		coordinates.add(latitude);
@@ -92,6 +92,13 @@ public class BasicStationDAO extends BasicDAO implements StationDAO {
 																			new BasicDBObject("type", "Point").
 																			append("coordinates", coordinates)).
 																		append("$maxDistance", radius)));
+		
+		return getStationCollection().find(query);
+	}
+	
+	@Override
+	public DBCursor getStationsByText(String search) {
+		BasicDBObject query = new BasicDBObject("$text",  new BasicDBObject("$search", search));
 		
 		return getStationCollection().find(query);
 	}

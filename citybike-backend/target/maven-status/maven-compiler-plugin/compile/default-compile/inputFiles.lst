@@ -1,0 +1,13 @@
+/Users/alain/Documents/workspace/citybike-backend/src/main/java/org/mongodb/citybike/AccessControlAllowOriginResponseFilter.java
+/Users/alain/Documents/workspace/citybike-backend/src/main/java/org/mongodb/citybike/CityBikeApplication.java
+/Users/alain/Documents/workspace/citybike-backend/src/main/java/org/mongodb/citybike/dao/ContractDAO.java
+/Users/alain/Documents/workspace/citybike-backend/src/main/java/org/mongodb/citybike/dao/BasicContractDAO.java
+/Users/alain/Documents/workspace/citybike-backend/src/main/java/org/mongodb/citybike/dao/BasicStationDAO.java
+/Users/alain/Documents/workspace/citybike-backend/src/main/java/org/mongodb/citybike/JCDClient.java
+/Users/alain/Documents/workspace/citybike-backend/src/main/java/org/mongodb/citybike/services/ContractService.java
+/Users/alain/Documents/workspace/citybike-backend/src/main/java/org/mongodb/citybike/dao/StationDAO.java
+/Users/alain/Documents/workspace/citybike-backend/src/main/java/org/mongodb/citybike/entities/TextSearchBean.java
+/Users/alain/Documents/workspace/citybike-backend/src/main/java/org/mongodb/citybike/CityBikeApplicationBinder.java
+/Users/alain/Documents/workspace/citybike-backend/src/main/java/org/mongodb/citybike/entities/Contract.java
+/Users/alain/Documents/workspace/citybike-backend/src/main/java/org/mongodb/citybike/services/StationService.java
+/Users/alain/Documents/workspace/citybike-backend/src/main/java/org/mongodb/citybike/dao/BasicDAO.java

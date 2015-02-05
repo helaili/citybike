@@ -1,0 +1,44 @@
+<script src='/path/to/lodash.min.js'></script>
+<script src='/path/to/angular-google-maps.min.js'></script>
+<section data-ng-controller="StationController" class="container">
+	<div class="page-header">
+		<h1>Stations</h1>
+	</div>
+	<div class="col-sm-12">
+        <form class="form-horizontal" novalidate>
+            	    <div class="form-group">
+	                    <div class="col-sm-9">
+	                    	<input class="form-control"  type="text" data-ng-model="search.text" id="textSearch" placeholder="Text to search" required></input>
+	                	</div>
+	                	<div class="col-sm-2 col-sm-offset-1">
+	                    	<input type="button" class="btn btn-default" value="Text Search"  ng-click="textSearch()">
+	                    </div>
+	                </div>
+            	    <div class="form-group">
+	                    <div class="col-sm-3">
+	                    	<input class="form-control" type="text" data-ng-model="search.latitude" id="latitude" placeholder="Latitude" required>
+	                    </div>
+	                    <div class="col-sm-3">
+	                    	<input class="form-control" type="text" data-ng-model="search.longitude" id="longitude" placeholder="Longitude" required>
+	                    </div>
+	                    <div class="col-sm-3">
+	                    	<input class="form-control" type="text" data-ng-model="search.radius" id="radius" placeholder="Radius in meter" required>
+	                    </div>
+	                    <div class="col-sm-2 col-sm-offset-1">
+	                    	<input type="button" class="btn btn-default" value="Geospatial Search" ng-click="geoSearch()">
+	                    </div>
+	                </div>
+        </form>
+    </div>
+    <div class="list-group col-md-6">
+		<a data-ng-repeat="station in stations" data-ng-href="#!/stations/{{station._id.$oid}}" class="list-group-item">
+			<h4 class="list-group-item-heading">{{station.name}}</h4>
+		</a>
+	</div>
+	<div class="list-group col-md-6">
+		<ui-gmap-google-map center='map.center' zoom='map.zoom'>
+			<ui-gmap-markers idkey="'number'" models="stations" coords="'position'" icon="'icon'"/>
+		</ui-gmap-google-map>
+	</div>
+	
+</section>

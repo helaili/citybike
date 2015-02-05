@@ -1,0 +1,19 @@
+<section class="container" data-ng-controller="StationController" data-ng-init="viewStation()">
+	<div class="page-header">
+		<h1>Station</h1>
+	</div>
+	<div class="media">
+		<div>
+			<address>
+  				<strong>{{station.name}}</strong><br>
+  				{{station.address}}<br>
+  				{{station.contract_name}}<br>
+			</address>
+		</div>
+	</div>
+	<ui-gmap-google-map center='map.center' zoom='map.zoom'>
+		<ui-gmap-marker idKey='station._id.$oid' coords='station.position'></ui-gmap-marker>
+	</ui-gmap-google-map>
+
+	
+</section>

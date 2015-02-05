@@ -1,0 +1,14 @@
+<section data-ng-controller="StationController" data-ng-init="listContracts()">
+	<div class="page-header">
+		<h1>Contracts</h1>
+	</div>
+	<div class="list-group">
+		<a data-ng-repeat="contract in contracts" data-ng-href="#!/stations/list/{{contract._id.$oid}}" class="list-group-item">
+			<h4 class="list-group-item-heading">{{contract.name}}, {{contract.country_code}}</h4>
+			<p class="list-group-item-text" data-ng-bind="contract.commercial_name"></p>
+		</a>
+	</div>
+	<div class="alert alert-warning text-center" data-ng-if="contracts.$resolved && !contracts.length">
+		No Contract found yet, why don't you <a href="http://localhost:8080/rest/contract/load">load them</a>?
+	</div>
+</section>
